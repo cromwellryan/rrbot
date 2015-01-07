@@ -3,6 +3,7 @@ board = new five.Board()
 stdin = process.stdin
 stdin.setRawMode true
 stdin.resume()
+
 board.on "ready", ->
   wheels =
     left: new five.Servo(
@@ -20,25 +21,25 @@ board.on "ready", ->
 
     forward: ->
       wheels.left.ccw()
-      wheels.right.cw()
+      wheels.right.ccw(.06)
       console.log "goForward"
       return
 
     pivotLeft: ->
       wheels.left.cw()
-      wheels.right.cw()
+      wheels.right.ccw()
       console.log "turnLeft"
       return
 
     pivotRight: ->
       wheels.left.ccw()
-      wheels.right.ccw()
+      wheels.right.cw()
       console.log "turnRight"
       return
 
     back: ->
       wheels.left.cw()
-      wheels.right.ccw()
+      wheels.right.cw(.08)
       return
 
   wheels.stop()
